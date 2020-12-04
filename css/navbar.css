@@ -1,0 +1,24 @@
+nav ul li {
+    display: inline-block;
+    width: 33%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+nav a:link,
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover {
+    color: black;
+}
+
+nav ul {
+    margin: 0%;
+}
+
+header img {
+    width: 6rem;
+}
