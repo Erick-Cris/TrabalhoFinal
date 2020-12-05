@@ -1,0 +1,41 @@
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+}
+
+header {
+    height: 5%;
+    background-color: darkblue;
+}
+
+img {
+    width: 6rem;
+}
+
+nav{
+    background-color: blue;
+    height: 10%;
+}
+/*
+nav{
+    height: 7%;
+    margin: 0%;
+    background-color: blue;
+    padding: 0.5% 1%;
+}
+*/
+main{
+    height: 80%;
+    padding: 0% 10%;
+    background-color: mintcream;
+}
+
+footer{
+    height: 5%;
+    background-color: blue;
+}
+
+
+
