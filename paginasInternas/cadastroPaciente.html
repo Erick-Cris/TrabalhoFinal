@@ -33,10 +33,10 @@
     <nav>
         <div class="container-fluid">
             <ul class="row">
-                <li class="col-sm-2"><a href="">Novo Funcionário</a></li>
-                <li class="col-sm-2"><a href="">Novo Paciente</a></li>
+                <li class="col-sm-2"><a href="../paginasInternas/cadastroFuncionario.html">Novo Funcionário</a></li>
+                <li class="col-sm-2"><a href="../paginasInternas/cadastroPaciente.html">Novo Paciente</a></li>
                 <li class="col-sm-2"><a href="">Funcionários</a></li>
-                <li class="col-sm-1"><a href="">Pacientes</a></li>
+                <li class="col-sm-1"><a href="../data/interno/listaPaciente.php">Pacientes</a></li>
                 <li class="col-sm-1"><a href="">Endereços</a></li>
                 <li class="col-sm-1"><a href="">Agendamentos</a></li>
                 <li class="col-sm-2"><a href="">Meus Agendamentos</a></li>
@@ -46,7 +46,7 @@
 
     <!--Main-->
     <main>
-        <form action="cadastrarPaciente" method="post">
+        <form action="../data/interno/cadastroPaciente.php" method="POST">
             <div class="container">
                 <h2>Cadastro de Funcionário</h2>
                 <div class="row gy-3 separador">
@@ -87,8 +87,8 @@
                         <label class="form-label" for="cidade">Cidade</label>
                     </div>
                     <!--Estado-->
-                    <div class="form-floating col-md-4" id="estado">
-                        <select id="estado" class="form-select">
+                    <div class="form-floating col-md-4">
+                        <select id="estado" name="estado" class="form-select">
                             <option selected>Sel.</option>
                             <option>MG</option>
                             <option>SP</option>
@@ -113,7 +113,7 @@
                     </div>
                     <!--Tipo Sanguíneo-->
                     <div class="form-floating col-md-4" id="sangue">
-                        <select id="sangue" class="form-select">
+                        <select id="sangue" name="sangue" class="form-select">
                             <option selected>Sel.</option>
                             <option>A</option>
                             <option>B</option>
