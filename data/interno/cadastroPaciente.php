@@ -4,8 +4,7 @@
 
       $nome = $email = $telefone = $cep = "";
       $logradouro = $bairro = $cidade = $estado = "";
-      $dataInicioContrato = $salario = $senha ="";
-      $medico = $crm = $especialidade = "";
+      $peso = $altura = $sangue = "";
 
       if(isset($_POST["nome"])) $nome = $_POST["nome"];
       if(isset($_POST["email"])) $email = $_POST["email"];
@@ -15,12 +14,9 @@
       if(isset($_POST["bairro"])) $bairro = $_POST["bairro"];
       if(isset($_POST["cidade"])) $cidade = $_POST["cidade"];
       if(isset($_POST["estado"])) $estado = $_POST["estado"];
-      if(isset($_POST["dataInicioContrato"])) $dataInicioContrato = $_POST["dataInicioContrato"];
-      if(isset($_POST["salario"])) $salario = $_POST["salario"];
-      if(isset($_POST["senha"])) $senha = $_POST["senha"];
-      if(isset($_POST["medico"])) $medico = $_POST["medico"];
-      if(isset($_POST["crm"])) $crm = $_POST["crm"];
-      if(isset($_POST["especialidade"])) $especialidade = $_POST["especialidade"];
+      if(isset($_POST["peso"])) $peso = $_POST["peso"];
+      if(isset($_POST["altura"])) $altura = $_POST["altura"];
+      if(isset($_POST["sangue"])) $sangue = $_POST["sangue"];
 
       //    cria hash da senha
       $hashSenha = password_hash($senha, PASSWORD_DEFAULT);
@@ -37,31 +33,18 @@
 
             $stmt = $pdo->prepare($sql);
             if(!$stmt->execute([$nome, $email, $telefone, $cep, $logradouro, $bairro, $cidade, $estado]))
-                  throw new Exception('Falha ao cadastrar pessoa.');
+                  throw new Exception('Erro em cadastrar pessoa.');
             $codigoPessoa = $pdo->lastInsertId(); 
 
-            //QUERY FUNCIONÁRIO                       
+            //QUERY Paciente                       
             $sql = <<<SQL
-            INSERT INTO funcionario (data_contrato, salario, senha_hash, codigo)
+            INSERT INTO paciente (peso, altura, tipo_sanguineo, codigo)
             values (?, ?, ?, ?);
             SQL;
 
             $stmt = $pdo->prepare($sql);
-            if(!$stmt->execute([$dataInicioContrato, $salario, $hashSenha, $codigoPessoa]))
-                  throw new Exception('Erro em cadastrar funcionário');
-
-            //QUERY MÉDICO
-            if($medico)
-            {
-                  $sql = <<<SQL
-                  INSERT INTO medico (crm, especialidade, codigo)
-                  values (?, ?, ?);
-                  SQL;
-      
-                  $stmt = $pdo->prepare($sql);
-                  if(!$stmt->execute([$crm, $especialidade, $codigoPessoa]))
-                        throw new Exception('Erro em cadastrar médico');
-            }
+            if(!$stmt->execute([$peso, $altura, $sangue, $codigoPessoa]))
+                  throw new Exception('Erro em cadastrar paciente');
 
             $pdo->commit();
 
@@ -73,11 +56,5 @@
       {
             $pdo->rollBack();
             exit('Erro: ' . $e->getMessage());
-            /*
-            if($e->errorInfo[1] === 1062)
-                  exit('Dados duplicados: ' . $e->getMessage());
-            else
-                  exit('Falha ao cadastrar os dados: ' . $e->getMessage());
-            */
       }
 ?>
