@@ -22,6 +22,8 @@ header {
     min-height: 5%;
     background-image: linear-gradient(to right,darkblue, blue);
     text-align: center;
+    width: 70%;
+    margin: 0 auto;
 }
 header h1{
     display: inline-block;
@@ -39,6 +41,9 @@ nav{
     background-image: linear-gradient(to right,rgb(87, 118, 255), rgb(78, 175, 255));
     min-height: 3%;
     max-height: auto;
+    width: 70%;
+    margin: 0 auto;
+    overflow: auto;
 }
 
 nav ul li {
@@ -81,7 +86,23 @@ footer{
     background-image: linear-gradient(to right,darkblue, blue);
     color: white;
     text-align: center;
+    width: 70%;
+    margin: 0 auto;
 }
 
 
+
+/*classes gerais*/
+.separador{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.oculto{
+    display: none;
+}
+
+.artigo{
+    margin-top: 10%;
+}
 
