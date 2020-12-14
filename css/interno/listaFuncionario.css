@@ -1,0 +1,12 @@
+h2{
+    margin-bottom: 3%;
+}
+
+main{
+    padding: 0.5%;
+}
+
+.tabela{
+    width: 100%;
+    overflow: auto;
+}

@@ -6,8 +6,8 @@
     {
         $sql = <<<SQL
         SELECT nome, email, telefone, cep, logradouro, bairro, cidade, estado,
-        peso, altura, tipo_sanguineo
-        FROM pessoa INNER JOIN paciente ON pessoa.codigo = paciente.codigo
+        data_contrato, salario, senha_hash
+        FROM pessoa INNER JOIN funcionario ON pessoa.codigo = funcionario.codigo
         SQL;
 
         $stmt = $pdo->query($sql);
@@ -39,8 +39,8 @@
     <!--CSS de layout Geral-->
     <link rel="stylesheet" type="text/css" href="../../css/layout.css">
 
-    <!--CSS de layout listaPaciente-->
-    <link rel="stylesheet" type="text/css" href="../../css/interno/listaPaciente.css">
+    <!--CSS de layout listaFuncionario-->
+    <link rel="stylesheet" type="text/css" href="../../css/interno/listaFuncionario.css">
 </head>
 
 <body>
@@ -55,7 +55,7 @@
             <ul class="row">
                 <li class="col-sm-2"><a href="../../paginasInternas/cadastroFuncionario.html">Novo Funcionário</a></li>
                 <li class="col-sm-2"><a href="../../paginasInternas/cadastroPaciente.html">Novo Paciente</a></li>
-                <li class="col-sm-2"><a href="listaFuncionario.php">Funcionários</a></li>
+                <li class="col-sm-1"><a href="listaPaciente.php">Pacientes</a></li>
                 <li class="col-sm-1"><a href="">Endereços</a></li>
                 <li class="col-sm-1"><a href="">Agendamentos</a></li>
                 <li class="col-sm-2"><a href="">Meus Agendamentos</a></li>
@@ -64,9 +64,8 @@
     </nav>
 
     <!--Main-->
-    <main>
-            <div class="tabela">
-                <h2>Pacientes</h2>
+    <main>  <div class="tabela">
+                <h2>Funcionarios</h2>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
@@ -78,9 +77,9 @@
                         <th scope="col">Bairro</th>
                         <th scope="col">Cidade</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Peso</th>
-                        <th scope="col">Altura</th>
-                        <th scope="col">Tipo Sanguíneo</th>
+                        <th scope="col">Data do Contrato</th>
+                        <th scope="col">Salário</th>
+                        <th scope="col">Senha Hash</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,7 +94,9 @@
                             $bairro = htmlspecialchars($row['bairro']);
                             $cidade = htmlspecialchars($row['cidade']);
                             $estado = htmlspecialchars($row['estado']);
-                            $tipo_sanguineo = htmlspecialchars($row['tipo_sanguineo']);
+
+                            $data = new DateTime($row['data_contrato']);
+                            $data_contrato = $data->format('d-m-Y');
 
                             echo <<<HTML
                             <tr>
@@ -107,16 +108,16 @@
                                 <td>$bairro</td>
                                 <td>$cidade</td>
                                 <td>$estado</td>
-                                <td>{$row['altura']}</td>
-                                <td>{$row['peso']}</td>
-                                <td>$tipo_sanguineo</td>
+                                <td>$data_contrato</td>
+                                <td>{$row['salario']}</td>
+                                <td>{$row['senha_hash']}</td>                                
                             </tr>
                             HTML;
                         }
                     ?>
                 </tbody>
                 </table>
-            </div>
+                </div>
     </main>
     <footer>
         © Copyright 2001-2020 Copyright.com.br - All Rights Reserved
