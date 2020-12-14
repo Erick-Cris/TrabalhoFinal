@@ -13,10 +13,12 @@
         FROM pessoa
         INNER JOIN funcionario ON pessoa.codigo = funcionario.codigo
         INNER JOIN medico ON funcionario.codigo = medico.codigo
-        WHERE especialidade like '%{$especialidade}%'
+        WHERE especialidade like ?
         SQL;
 
-        $stmt = $pdo->query($sql);
+        $stmt = $pdo->prepare($sql);
+        if(!$stmt->execute([$especialidade]))
+            throw new Exception('Erro em buscar medicos.');
 
         $nomes = [];
         while($row = $stmt->fetch()){

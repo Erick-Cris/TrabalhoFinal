@@ -23,7 +23,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Cadastro de Paciente</title>
+    <title>Funcionários</title>
     <meta charset="UTF-8">
 
     <!--Bootstrap-->
@@ -39,8 +39,8 @@
     <!--CSS de layout Geral-->
     <link rel="stylesheet" type="text/css" href="../../css/layout.css">
 
-    <!--CSS de layout listaFuncionario-->
-    <link rel="stylesheet" type="text/css" href="../../css/interno/listaFuncionario.css">
+    <!--CSS de layout lista-->
+    <link rel="stylesheet" type="text/css" href="../../css/interno/lista.css">
 </head>
 
 <body>

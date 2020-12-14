@@ -5,9 +5,8 @@
     try
     {
         $sql = <<<SQL
-        SELECT nome, email, telefone, cep, logradouro, bairro, cidade, estado,
-        peso, altura, tipo_sanguineo
-        FROM pessoa INNER JOIN paciente ON pessoa.codigo = paciente.codigo
+        SELECT cep, logradouro, bairro, cidade, estado
+        FROM base_enderecos_ajax
         SQL;
 
         $stmt = $pdo->query($sql);
@@ -23,18 +22,13 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Cadastro de Paciente</title>
+    <title>Endereços</title>
     <meta charset="UTF-8">
 
     <!--Bootstrap-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-CuOF+2SnTUfTwSZjCXf01h7uYhfOBuxIhGKPbfEJ3+FqH/s6cIFN9bGr1HmAg4fQ" crossorigin="anonymous">
-
-    <!-- JavaScript Bundle with Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy"
-        crossorigin="anonymous"></script>
 
     <!--CSS de layout Geral-->
     <link rel="stylesheet" type="text/css" href="../../css/layout.css">
@@ -55,8 +49,7 @@
             <ul class="row">
                 <li class="col-sm-2"><a href="../../paginasInternas/cadastroFuncionario.html">Novo Funcionário</a></li>
                 <li class="col-sm-2"><a href="../../paginasInternas/cadastroPaciente.html">Novo Paciente</a></li>
-                <li class="col-sm-2"><a href="listaFuncionario.php">Funcionários</a></li>
-                <li class="col-sm-1"><a href="">Endereços</a></li>
+                <li class="col-sm-1"><a href="listaPaciente.php">Pacientes</a></li>
                 <li class="col-sm-1"><a href="">Agendamentos</a></li>
                 <li class="col-sm-2"><a href="">Meus Agendamentos</a></li>
             </ul>
@@ -64,59 +57,42 @@
     </nav>
 
     <!--Main-->
-    <main>
-            <div class="tabela">
-                <h2>Pacientes</h2>
+    <main>  <div class="tabela">
+                <h2>Endereços</h2>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Telefone</th>
                         <th scope="col">CEP</th>
                         <th scope="col">Logradouro</th>
                         <th scope="col">Bairro</th>
                         <th scope="col">Cidade</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Peso</th>
-                        <th scope="col">Altura</th>
-                        <th scope="col">Tipo Sanguíneo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         while($row = $stmt->fetch())
                         {
-                            $nome = htmlspecialchars($row['nome']);
-                            $email = htmlspecialchars($row['email']);
-                            $telefone = htmlspecialchars($row['telefone']);
                             $cep = htmlspecialchars($row['cep']);
                             $logradouro = htmlspecialchars($row['logradouro']);
                             $bairro = htmlspecialchars($row['bairro']);
                             $cidade = htmlspecialchars($row['cidade']);
                             $estado = htmlspecialchars($row['estado']);
-                            $tipo_sanguineo = htmlspecialchars($row['tipo_sanguineo']);
 
                             echo <<<HTML
                             <tr>
-                                <td>$nome</td>
-                                <td>$email</td>
-                                <td>$telefone</td>
                                 <td>$cep</td>
                                 <td>$logradouro</td>
                                 <td>$bairro</td>
                                 <td>$cidade</td>
-                                <td>$estado</td>
-                                <td>{$row['altura']}</td>
-                                <td>{$row['peso']}</td>
-                                <td>$tipo_sanguineo</td>
+                                <td>$estado</td>                              
                             </tr>
                             HTML;
                         }
                     ?>
                 </tbody>
                 </table>
-            </div>
+                </div>
     </main>
     <footer>
         © Copyright 2001-2020 Copyright.com.br - All Rights Reserved
