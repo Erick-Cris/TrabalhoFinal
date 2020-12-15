@@ -55,7 +55,7 @@
 
             $pdo->commit();
 
-            header("location: ../../homeExterna.html");
+            header("location: ../../index.html");
             exit();
       }
       catch(Exception $e)

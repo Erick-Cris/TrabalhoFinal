@@ -6,17 +6,19 @@ html, body{
 }
 
 header{
-    height: 5%;
+    min-height: 7%;
+    max-height: auto;
     background-color: lightgrey;
     text-align: center;
 }
 
-header h2{
+header h1{
     display: inline-block;
+    margin-bottom: 0%;
 }
 
 header img {
-    width: 6rem;
+    width: 2.8rem;
     float: left;
 }
 
@@ -31,8 +33,9 @@ main div{
 }
 
 footer{
-    height: 5%;
+    height: 3%;
     background-color: lightgrey;
+    text-align: center;
 }
 
 .centralizar{

@@ -2,12 +2,16 @@
     require "../conexaoMySql.php";
     $pdo = mysqlConnect();
 
+    $usuario = $_SESSION["usuario"];
+
+
     try
     {
         $sql = <<<SQL
-        SELECT nome, email, telefone, cep, logradouro, bairro, cidade, estado,
-        data_contrato, salario, senha_hash
-        FROM pessoa INNER JOIN funcionario ON pessoa.codigo = funcionario.codigo
+        SELECT a.nome, a.email, a.telefone, a.data_agendamento, a.horario, p.nome as nome_medico
+        FROM agenda AS a
+        INNER JOIN pessoa AS p ON p.codigo = a.codigo_medico
+        WHERE p.codigo = '{$usuario}'
         SQL;
 
         $stmt = $pdo->query($sql);
@@ -23,7 +27,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Funcionários</title>
+    <title>Agendamentos</title>
     <meta charset="UTF-8">
 
     <!--Bootstrap-->
@@ -72,6 +76,9 @@
                         <a class="nav-link" href="../../paginasInternas/cadastroPaciente.html">Novo Paciente</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="listaFuncionario.php">Funcionários</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="listaPaciente.php">Pacientes</a>
                     </li>
                     <li class="nav-item">
@@ -79,9 +86,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="listaAgendamento.php">Agendamentos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="listaMeusAgendamentos.php" style="display: none;">Meus Agendamentos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../../index.html">Sair</a>
@@ -93,21 +97,16 @@
 
     <!--Main-->
     <main>  <div class="tabela">
-                <h2>Funcionarios</h2>
+                <h2>Agendamentos:</h2>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefone</th>
-                        <th scope="col">CEP</th>
-                        <th scope="col">Logradouro</th>
-                        <th scope="col">Bairro</th>
-                        <th scope="col">Cidade</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Data do Contrato</th>
-                        <th scope="col">Salário</th>
-                        <th scope="col">Senha Hash</th>
+                        <th scope="col">Data de Agendamento</th>
+                        <th scope="col">Horário</th>
+                        <th scope="col">Médico</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -117,28 +116,20 @@
                             $nome = htmlspecialchars($row['nome']);
                             $email = htmlspecialchars($row['email']);
                             $telefone = htmlspecialchars($row['telefone']);
-                            $cep = htmlspecialchars($row['cep']);
-                            $logradouro = htmlspecialchars($row['logradouro']);
-                            $bairro = htmlspecialchars($row['bairro']);
-                            $cidade = htmlspecialchars($row['cidade']);
-                            $estado = htmlspecialchars($row['estado']);
+                            $horario = htmlspecialchars($row['horario']);
+                            $medico = htmlspecialchars($row['nome_medico']);
 
-                            $data = new DateTime($row['data_contrato']);
-                            $data_contrato = $data->format('d-m-Y');
+                            $data = new DateTime($row['data_agendamento']);
+                            $data_agendamento = $data->format('d-m-Y');
 
                             echo <<<HTML
                             <tr>
                                 <td>$nome</td>
                                 <td>$email</td>
                                 <td>$telefone</td>
-                                <td>$cep</td>
-                                <td>$logradouro</td>
-                                <td>$bairro</td>
-                                <td>$cidade</td>
-                                <td>$estado</td>
-                                <td>$data_contrato</td>
-                                <td>{$row['salario']}</td>
-                                <td>{$row['senha_hash']}</td>                                
+                                <td>$data_agendamento</td>
+                                <td>$horario</td>
+                                <td>$medico</td>                              
                             </tr>
                             HTML;
                         }

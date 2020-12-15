@@ -66,7 +66,7 @@
             $pdo->commit();
 
 
-            header("location: ../../homeInterna.html");
+            header("location: ../../paginasInternas/index.html");
             exit();
       }
       catch(Exception $e)

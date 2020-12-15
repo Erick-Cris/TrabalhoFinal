@@ -5,9 +5,8 @@
     try
     {
         $sql = <<<SQL
-        SELECT nome, email, telefone, cep, logradouro, bairro, cidade, estado,
-        data_contrato, salario, senha_hash
-        FROM pessoa INNER JOIN funcionario ON pessoa.codigo = funcionario.codigo
+        SELECT cep, logradouro, bairro, cidade, estado
+        FROM base_enderecos_ajax
         SQL;
 
         $stmt = $pdo->query($sql);
@@ -23,7 +22,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Funcionários</title>
+    <title>Endereços</title>
     <meta charset="UTF-8">
 
     <!--Bootstrap-->
@@ -72,10 +71,10 @@
                         <a class="nav-link" href="../../paginasInternas/cadastroPaciente.html">Novo Paciente</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="listaPaciente.php">Pacientes</a>
+                        <a class="nav-link" href="listaFuncionario.php">Funcionários</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="listaEndereco.php">Endereços</a>
+                        <a class="nav-link" href="listaPaciente.php">Pacientes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="listaAgendamento.php">Agendamentos</a>
@@ -93,52 +92,34 @@
 
     <!--Main-->
     <main>  <div class="tabela">
-                <h2>Funcionarios</h2>
+                <h2>Endereços</h2>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Telefone</th>
                         <th scope="col">CEP</th>
                         <th scope="col">Logradouro</th>
                         <th scope="col">Bairro</th>
                         <th scope="col">Cidade</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Data do Contrato</th>
-                        <th scope="col">Salário</th>
-                        <th scope="col">Senha Hash</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         while($row = $stmt->fetch())
                         {
-                            $nome = htmlspecialchars($row['nome']);
-                            $email = htmlspecialchars($row['email']);
-                            $telefone = htmlspecialchars($row['telefone']);
                             $cep = htmlspecialchars($row['cep']);
                             $logradouro = htmlspecialchars($row['logradouro']);
                             $bairro = htmlspecialchars($row['bairro']);
                             $cidade = htmlspecialchars($row['cidade']);
                             $estado = htmlspecialchars($row['estado']);
 
-                            $data = new DateTime($row['data_contrato']);
-                            $data_contrato = $data->format('d-m-Y');
-
                             echo <<<HTML
                             <tr>
-                                <td>$nome</td>
-                                <td>$email</td>
-                                <td>$telefone</td>
                                 <td>$cep</td>
                                 <td>$logradouro</td>
                                 <td>$bairro</td>
                                 <td>$cidade</td>
-                                <td>$estado</td>
-                                <td>$data_contrato</td>
-                                <td>{$row['salario']}</td>
-                                <td>{$row['senha_hash']}</td>                                
+                                <td>$estado</td>                              
                             </tr>
                             HTML;
                         }

@@ -23,7 +23,7 @@
                   throw new Exception('Erro em cadastrar endereco.');
             $codigoPessoa = $pdo->lastInsertId(); 
 
-            header("location: ../../homeExterna.html");
+            header("location: ../../index.html");
             exit();
       }
       catch(Exception $e)
