@@ -20,7 +20,7 @@ function validarUsuario(event) {
                     usuarioInvalido.style.display = 'inline-block';
                 }
                 else{
-                    window.location.href = '../homeInterna.html';
+                    window.location.href = '../paginasInternas/index.html';
                 }
 
             }
