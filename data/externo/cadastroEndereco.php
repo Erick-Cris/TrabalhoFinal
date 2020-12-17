@@ -28,7 +28,6 @@
       }
       catch(Exception $e)
       {
-            $pdo->rollBack();
             exit('Erro: ' . $e->getMessage());
       }
 ?>

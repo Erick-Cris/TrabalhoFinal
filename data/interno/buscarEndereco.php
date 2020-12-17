@@ -21,10 +21,10 @@
         if($row = $stmt->fetch())
         {
             $flag = true;
-            $logradouro =  $row['logradouro'];
-            $bairro =  $row['bairro'];
-            $cidade =  $row['cidade'];
-            $estado =  $row['estado'];
+            $logradouro =  htmlspecialchars($row['logradouro']);
+            $bairro =  htmlspecialchars($row['bairro']);
+            $cidade =  htmlspecialchars($row['cidade']);
+            $estado =  htmlspecialchars($row['estado']);
         }
         else
         {

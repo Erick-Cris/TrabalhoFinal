@@ -22,7 +22,7 @@
 
         $nomes = [];
         while($row = $stmt->fetch()){
-            $nomes[] =  $row['nome'];
+            $nomes[] =  htmlspecialchars($row['nome']);
         }
 
         if (! $jsonStr = json_encode($nomes))

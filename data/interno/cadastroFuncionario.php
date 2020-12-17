@@ -73,11 +73,5 @@
       {
             $pdo->rollBack();
             exit('Erro: ' . $e->getMessage());
-            /*
-            if($e->errorInfo[1] === 1062)
-                  exit('Dados duplicados: ' . $e->getMessage());
-            else
-                  exit('Falha ao cadastrar os dados: ' . $e->getMessage());
-            */
       }
 ?>

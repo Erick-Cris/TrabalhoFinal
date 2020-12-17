@@ -13,7 +13,7 @@
 
         $especialidades = [];
         while($row = $stmt->fetch()){
-            $especialidades[] =  $row['especialidade'];
+            $especialidades[] =  htmlspecialchars($row['especialidade']);
         }
 
         if (! $jsonStr = json_encode($especialidades))
