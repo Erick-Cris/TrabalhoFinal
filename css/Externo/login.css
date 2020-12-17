@@ -39,7 +39,9 @@ footer{
 }
 
 .centralizar{
-    width: 30%;
+    display: block;
+    max-width: 400px;
+    width: 50%;
     padding: 2%;            
     position: absolute;
     left: 50%;
@@ -51,4 +53,20 @@ footer{
 
 h2{
     text-align: center;
+}
+
+@media screen and (max-width: 2000px) {
+
+    .centralizar{
+        border-top: 10px;
+        max-width: 400px;
+        width: 100%;
+        padding: 2%;            
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);            
+        border-top: 1px solid rgb(189, 189, 189);
+    }
+
 }

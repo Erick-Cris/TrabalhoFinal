@@ -81,9 +81,6 @@
                         <a class="nav-link" href="listaAgendamento.php">Agendamentos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="listaMeusAgendamentos.php" style="display: none;">Meus Agendamentos</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="../../index.html">Sair</a>
                     </li>
                 </ul>
