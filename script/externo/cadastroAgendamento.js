@@ -68,11 +68,12 @@ function buscaMedico(event){
                     campoMedico.appendChild(option);
                 }
 
-                if(nomes.length > 0)
+                if(nomes.length > 0){
                     campoMedico.parentNode.style.display = 'inline-block';
-                else
-                    campoMedico.style.display = 'none';
-
+                }
+                else{
+                    campoMedico.parentNode.style.display = 'none';
+                }
             }
             catch (ex) {
                 alert("A resposta do servidor não é válida: " + xmlhttp.responseText);
